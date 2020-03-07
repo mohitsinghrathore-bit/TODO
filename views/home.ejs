@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>TODO</title>
+    <link rel="stylesheet" type="text/css" href="home.js">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+    </script>
+    
+    
+    <script src="https://kit.fontawesome.com/79632854ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <!-- app heading -->
+    <div id="heading">
+        <h1>TODO APP</h1>
+    </div>
+    <!-- description -->
+    <div id="todo-detail">
+        <form action="/todo" method="POST">
+            <hr>
+            <div id="todo-A">
+                <h5 class="descp-todo">DESCRIPTION</h5>
+                <input type="text" name="description" class="todo-input" id="todo-A1"placeholder="What you need to do?">
+            </div>
+            <hr>
+            <div id="category">
+                <h5 class="descp-todo">CATEGORY</h5>
+                <select id="categ-input" name="category" class="todo-input">
+                    <option>School</option>
+                    <option>Work</option>
+                    <option>Personal</option>
+                    <option>Cleaning</option>
+                </select>
+            </div>
+            <div id="date">
+             <h5 class="descp-todo">DUE DATE</h5>
+             <input type="date" name="date" class="todo-input" id="date-input" placeholder="dd/mm/yyyy">
+            </div>
+            <hr>
+            <button type="submit" class="add-task"> <i class="fas fa-plus task-logo"></i>ADD TASK</button>
+        </form>
+    </div>
+    <div>
+            <% var a=0;%>       
+
+            <form action="/dlt-todo" method="POST">
+                <button type="submit" class="add-task " id="del-task" ><i class="fas fa-trash-alt task-logo"></i>DELETE TASK</button>
+
+                <% let count=0; %>
+         
+        <% for(let i of todo_list){%>
+        <hr>
+        <label></label> <input type="checkbox" name="id" value="<%= i._id %>" class="checkboxi" ></label>
+        <div class="todo-content">
+            <div class="dat-desc">
+                    <div class="desc-cont">
+                     <%= i.description %>
+                    </div>
+                   
+                <div class="date-cont">
+                    <i class="fas fa-calendar-week"></i>
+                        
+                  <%=  moment(i.date).format("dddd,  Do MMMM YYYY")
+                  
+                  %>
+                
+                
+                </div>
+                 </div>
+                 <% if(i.category == "School"){%>
+                 <div class="category-contA category-cont" id="category-contA">
+                   <%= i.category %>
+                 </div>
+                 <%}%>
+                 <% if(i.category == "Personal"){%>
+                    <div class="category-contB category-cont" id="category-contA">
+                      <%= i.category %>
+                    </div>
+                    <%}%>
+                    <% if(i.category == "Work"){%>
+                        <div class="category-contC category-cont" id="category-contA">
+                          <%= i.category %>
+                        </div>
+                        <%}%>
+                        <% if(i.category == "Cleaning"){%>
+                            <div class="category-contD category-cont" id="category-contA">
+                              <%= i.category %>
+                            </div>
+                            <%}%>
+        </div>
+    </div>
+<% a=a+1; %>
+<%}%>
+</form>
+
+</body>
+<script src="home.js">
+</script>
+</html>
